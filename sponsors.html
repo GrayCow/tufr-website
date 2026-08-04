@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sponsors — TUFR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">TU<span>FR</span></a>
+    <ul>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="sponsors.html" aria-current="page">Sponsors</a></li>
+      <li><a class="nav-cta" data-apply href="#">Join Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="eyebrow">Partner with TUFR</p>
+    <h1>Put Your Name<br>on the <span class="accent">Car</span></h1>
+    <p class="lede">As a non-profit student team, every dollar and donated part goes directly into steel, tires, sensors, and entry fees. Partners get their brand in front of Trinity's most hands-on students and the national FSAE community.</p>
+    <div class="cta-row" style="margin-top:1.8rem"><a class="btn solid" data-email href="#">Contact Us About Sponsoring</a></div>
+  </div>
+</header>
+
+<section class="bordered">
+  <div class="container">
+    <p class="eyebrow">Sponsorship tiers</p>
+    <h2>Where You Fit</h2>
+    <div class="tiers" id="tiers"></div>
+    <p class="muted" style="margin-top:1.4rem">Custom packages and in-kind donations welcome — <a data-email href="#" class="red">email us</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="eyebrow">Current partners</p>
+    <h2>Our Sponsors</h2>
+    <div class="partner-logos" id="sponsor-logos"></div>
+  </div>
+</section>
+
+<section class="subteams bordered" style="text-align:center">
+  <div class="container">
+    <h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Ready to Join the Grid?</h2>
+    <p class="muted" style="margin-bottom:1.5rem">We'll send you our full sponsorship packet with placement mockups and season plans.</p>
+    <a class="btn solid" data-email href="#">Become a Partner</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo">TU<span>FR</span></div>
+      <p style="color:var(--grey);max-width:24rem;font-size:.92rem">Trinity University Formula Racing — a non-profit, student-run Formula SAE team based in San Antonio, TX.</p>
+    </div>
+    <div><h4>Quick Links</h4><ul>
+      <li><a href="team.html">Team</a></li><li><a href="news.html">News</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li><li><a data-apply href="#">Join Us</a></li>
+    </ul></div>
+    <div><h4>Contact</h4><ul>
+      <li><a data-email href="#" data-email-text>tufr@trinity.edu</a></li>
+      <li data-address>One Trinity Pl, San Antonio, TX 78212</li>
+      <li><a data-ig href="#">Instagram</a></li>
+    </ul></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Trinity University Formula Racing</span><span>All rights reserved</span></div>
+</footer>
+
+<script src="data.js"></script>
+<script>renderTiers("tiers");renderSponsors("sponsor-logos");</script>
+</body>
+</html>

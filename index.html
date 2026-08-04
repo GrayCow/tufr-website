@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUFR — Trinity University Formula Racing</title>
+<meta name="description" content="Trinity University's Formula SAE team. Students designing, building, and racing a formula-style car.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">TU<span>FR</span></a>
+    <ul>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a class="nav-cta" data-apply href="#">Join Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" style="padding:4.5rem 0 0">
+  <div class="container">
+    <p class="eyebrow">Formula SAE · Trinity University</p>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(4.2rem,11vw,9.5rem);text-transform:uppercase;line-height:.9">We Are<br><span style="color:#A79E9A">Builders.</span> <span class="red">We Are TUFR.</span></h1>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-top:1.8rem">
+      <p style="max-width:32rem;color:var(--grey);font-size:1.1rem">A student-run, non-profit engineering organization designing and building a formula-style car to compete against universities across the country — open to every major, every year.</p>
+      <div class="cta-row">
+        <a class="btn solid" data-apply href="#">Join the Team</a>
+        <a class="btn outline" href="team.html">Meet the Team</a>
+      </div>
+    </div>
+  </div>
+  <div class="stats" style="margin-top:2.6rem" id="stats"></div>
+  <div class="container" style="padding-top:2.2rem"><div class="ph hero-photo">team / car hero photo</div></div>
+</header>
+
+<section class="bordered">
+  <div class="container about-grid">
+    <div><p class="eyebrow">Who we are</p><h2>About TUFR</h2></div>
+    <div>
+      <blockquote>"What we lack in experience, we make up for with passion and determination."</blockquote>
+      <p>Trinity University Formula Racing is a student chapter of Formula SAE, the world's premier collegiate engineering design competition. Our team designs, builds, and races a formula-style car from the ground up — every system engineered entirely by students, from suspension geometry to body panels.</p>
+    </div>
+  </div>
+</section>
+
+<section class="subteams bordered">
+  <div class="container subteams-inner">
+    <div>
+      <p class="eyebrow">Where you fit in</p>
+      <h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Any major. Any year.</h2>
+      <div class="chip-row" id="subteam-chips"></div>
+    </div>
+    <div class="subteams-cta">
+      <p>No experience required — just curiosity and a willingness to learn hands-on.</p>
+      <a class="btn solid" data-apply href="#">Apply to Join</a>
+    </div>
+  </div>
+</section>
+
+<section class="bordered">
+  <div class="container">
+    <div class="head-row"><h2>Latest News</h2><a href="news.html">View all →</a></div>
+    <div class="grid2" id="home-news"></div>
+  </div>
+</section>
+
+<section class="bordered">
+  <div class="container">
+    <div class="head-row"><h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Follow Along</h2><a data-ig href="#">@tu.formula.racing →</a></div>
+    <div class="ig-grid"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+  </div>
+</section>
+
+<section style="text-align:center">
+  <div class="container">
+    <span class="eyebrow">Partners &amp; Supporters</span>
+    <h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Our Sponsors</h2>
+    <p class="muted" style="max-width:34rem;margin:0 auto 2.2rem">Our partners provide the parts, tools, and funding that make it possible to design and race a car every season.</p>
+    <div class="partner-logos" id="home-sponsors" style="max-width:900px;margin:0 auto 2.2rem"></div>
+    <a class="btn solid" href="sponsors.html">Sponsorship Details</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo">TU<span>FR</span></div>
+      <p style="color:var(--grey);max-width:24rem;font-size:.92rem">Trinity University Formula Racing — a non-profit, student-run Formula SAE team based in San Antonio, TX.</p>
+      <form class="mail mail-inline"><input type="email" placeholder="Email for updates" aria-label="Email" required><button type="submit">Subscribe</button></form>
+    </div>
+    <div><h4>Quick Links</h4><ul>
+      <li><a href="team.html">Team</a></li><li><a href="news.html">News</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li><li><a data-apply href="#">Join Us</a></li>
+    </ul></div>
+    <div><h4>Contact</h4><ul>
+      <li><a data-email href="#" data-email-text>tufr@trinity.edu</a></li>
+      <li data-address>One Trinity Pl, San Antonio, TX 78212</li>
+      <li><a data-ig href="#">Instagram</a></li>
+    </ul></div>
+  </div>
+  <div class="container footer-bottom"><span data-season-line>© 2026 Trinity University Formula Racing</span><span>All rights reserved</span></div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+renderStats("stats");
+renderSubteamChips("subteam-chips");
+renderNews("home-news", 2);
+renderSponsors("home-sponsors");
+</script>
+</body>
+</html>

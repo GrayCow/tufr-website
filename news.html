@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — TUFR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">TU<span>FR</span></a>
+    <ul>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="news.html" aria-current="page">News</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a class="nav-cta" data-apply href="#">Join Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="eyebrow">Monthly &amp; quarterly team updates</p>
+    <h1>Pit <span class="accent">Wall</span></h1>
+    <p class="lede">Build progress, milestones, and season announcements — the same updates that go out to our mailing list.</p>
+  </div>
+</header>
+
+<section>
+  <div class="container" style="display:grid;grid-template-columns:2fr 1fr;gap:3rem" id="news-cols">
+    <div class="grid2" id="all-news" style="grid-template-columns:1fr"></div>
+    <aside>
+      <div class="card" style="border-left:4px solid var(--red);position:sticky;top:90px">
+        <p class="eyebrow">Race Radio</p>
+        <h3>Get updates by email</h3>
+        <p class="muted">Monthly during build season, quarterly otherwise. No spam — just the car.</p>
+        <form class="mail" style="margin-top:1rem;display:flex;flex-direction:column;gap:.6rem">
+          <input type="email" placeholder="you@email.com" aria-label="Email" required style="border:1px solid var(--line);padding:.75rem 1rem;font-family:inherit">
+          <button class="btn solid" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo">TU<span>FR</span></div>
+      <p style="color:var(--grey);max-width:24rem;font-size:.92rem">Trinity University Formula Racing — a non-profit, student-run Formula SAE team based in San Antonio, TX.</p>
+    </div>
+    <div><h4>Quick Links</h4><ul>
+      <li><a href="team.html">Team</a></li><li><a href="news.html">News</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li><li><a data-apply href="#">Join Us</a></li>
+    </ul></div>
+    <div><h4>Contact</h4><ul>
+      <li><a data-email href="#" data-email-text>tufr@trinity.edu</a></li>
+      <li data-address>One Trinity Pl, San Antonio, TX 78212</li>
+      <li><a data-ig href="#">Instagram</a></li>
+    </ul></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Trinity University Formula Racing</span><span>All rights reserved</span></div>
+</footer>
+
+<script src="data.js"></script>
+<script>renderNews("all-news");</script>
+<style>@media(max-width:860px){#news-cols{grid-template-columns:1fr!important}}</style>
+</body>
+</html>

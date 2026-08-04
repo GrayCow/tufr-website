@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team — TUFR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">TU<span>FR</span></a>
+    <ul>
+      <li><a href="team.html" aria-current="page">Team</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a class="nav-cta" data-apply href="#">Join Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <p class="eyebrow">The people behind the car</p>
+    <h1>The <span class="accent">Crew</span></h1>
+    <p class="lede">Every bolt on the car has a student's name behind it. Meet the <span data-season></span> team — and the members who built the seasons before it.</p>
+  </div>
+</header>
+
+<section class="bordered">
+  <div class="container">
+    <p class="eyebrow">Leadership</p>
+    <h2>Season <span data-season></span> Leads</h2>
+    <div class="member-grid" id="leadership"></div>
+  </div>
+</section>
+
+<section class="bordered">
+  <div class="container">
+    <p class="eyebrow">Roster</p>
+    <h2>Full Team</h2>
+    <ul class="roster-list roster-cols" id="members"></ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="eyebrow">Legacy grid</p>
+    <h2>Past Seasons</h2>
+    <p class="muted" style="margin-bottom:1.6rem">TUFR runs because of the members who came before. Captains are marked with a ★.</p>
+    <div id="alumni"></div>
+  </div>
+</section>
+
+<section class="subteams bordered" style="text-align:center">
+  <div class="container">
+    <h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Your Name Belongs Here</h2>
+    <p class="muted" style="margin-bottom:1.5rem">Any major, any year. Join the team and leave your mark on the legacy grid.</p>
+    <a class="btn solid" data-apply href="#">Apply to Join</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo">TU<span>FR</span></div>
+      <p style="color:var(--grey);max-width:24rem;font-size:.92rem">Trinity University Formula Racing — a non-profit, student-run Formula SAE team based in San Antonio, TX.</p>
+      <form class="mail mail-inline"><input type="email" placeholder="Email for updates" aria-label="Email" required><button type="submit">Subscribe</button></form>
+    </div>
+    <div><h4>Quick Links</h4><ul>
+      <li><a href="team.html">Team</a></li><li><a href="news.html">News</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li><li><a data-apply href="#">Join Us</a></li>
+    </ul></div>
+    <div><h4>Contact</h4><ul>
+      <li><a data-email href="#" data-email-text>tufr@trinity.edu</a></li>
+      <li data-address>One Trinity Pl, San Antonio, TX 78212</li>
+      <li><a data-ig href="#">Instagram</a></li>
+    </ul></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Trinity University Formula Racing</span><span>All rights reserved</span></div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+renderLeadership("leadership");
+renderMembers("members");
+renderAlumni("alumni");
+</script>
+</body>
+</html>
