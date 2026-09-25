@@ -41,12 +41,11 @@ section{padding:4.5rem 0}
 h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(2.4rem,5.5vw,3.6rem);text-transform:uppercase;margin:.4rem 0 1.2rem}
 
 /* stats strip */
-.stats{background:var(--offwhite);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;max-width:1180px;margin:0 auto}
-.stats-grid div{padding:1.8rem 1rem;border-right:1px solid var(--line)}
-.stats-grid div:last-child{border-right:none}
-.stats-grid b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:2.4rem;color:var(--red)}
-.stats-grid span{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.stats{background:var(--offwhite);border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stats div{padding:1.8rem 1rem;border-right:1px solid var(--line)}
+.stats div:last-child{border-right:none}
+.stats b{display:block;font-family:'Barlow Condensed',sans-serif;font-size:2.4rem;color:var(--red);line-height:1.2}
+.stats span{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
 
 .ph{background:repeating-linear-gradient(45deg,var(--offwhite) 0 16px,#F1EBE6 16px 32px);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:.8rem;text-align:center;padding:.5rem}
 .ph.hero-photo{aspect-ratio:21/7}
@@ -138,8 +137,8 @@ footer{background:var(--offwhite);border-top:1px solid var(--line);padding:3.5re
   .subteams-inner{grid-template-columns:1fr}
   .subteams-cta{text-align:left}
   .subteams-cta p{margin-left:0}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .stats-grid div{border-bottom:1px solid var(--line)}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats div{border-bottom:1px solid var(--line)}
   .grid2{grid-template-columns:1fr}
   .ig-grid{grid-template-columns:repeat(3,1fr)}
   .partner-logos{grid-template-columns:repeat(2,1fr)}
