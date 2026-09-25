@@ -1,5 +1,5 @@
 /* ============================================================
-   TUFR SITE DATA — edit this ONE file each season.
+   TUFR SITE DATA: edit this ONE file each season.
    Photos: put images in /photos and set "photo" to
    "photos/filename.jpg". Leave "" for a placeholder box.
    ============================================================ */
@@ -84,11 +84,11 @@ const TUFR = {
 };
 
 /* ============================================================
-   RENDER HELPERS — no need to edit below this line
+   RENDER HELPERS: no need to edit below this line
    ============================================================ */
 function photoOrPh(src, alt){
   return src ? `<img src="${src}" alt="${alt}" style="aspect-ratio:1;object-fit:cover;width:100%">`
-             : `<div class="ph sq">photo — ${alt}</div>`;
+             : `<div class="ph sq">photo: ${alt}</div>`;
 }
 function renderStats(id){
   const c=document.getElementById(id); if(!c) return;
@@ -138,7 +138,7 @@ function renderSponsors(id){
   const c=document.getElementById(id); if(!c) return;
   c.innerHTML = TUFR.currentSponsors.length
     ? TUFR.currentSponsors.map(s=>`<a href="${s.url}" class="card" style="text-align:center;display:flex;align-items:center;justify-content:center"><img src="${s.logo}" alt="${s.name}" style="max-height:56px"></a>`).join("")
-    : `<p class="muted">Your logo here — become our first partner of the ${TUFR.season} season.</p>`;
+    : `<p class="muted">Your logo here. Become our first partner of the ${TUFR.season} season.</p>`;
 }
 function wireCommon(){
   document.querySelectorAll("[data-apply]").forEach(a=>a.href=TUFR.applyUrl);
@@ -148,7 +148,7 @@ function wireCommon(){
   document.querySelectorAll("[data-ig]").forEach(a=>a.href=TUFR.instagram);
   document.querySelectorAll("[data-address]").forEach(e=>e.textContent=TUFR.address);
   document.querySelectorAll("form.mail").forEach(f=>f.addEventListener("submit",e=>{
-    e.preventDefault(); f.innerHTML='<span class="muted">Subscribed ✓ — updates land monthly/quarterly.</span>';
+    e.preventDefault(); f.innerHTML='<span class="muted">Subscribed ✓ Updates land monthly/quarterly.</span>';
   }));
 }
 document.addEventListener("DOMContentLoaded", wireCommon);
