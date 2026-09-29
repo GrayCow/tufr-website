@@ -129,9 +129,8 @@ function renderLeadership(id){
 }
 function renderMembers(id){
   const c=document.getElementById(id); if(!c) return;
-  c.innerHTML = TUFR.members.length
-    ? byName(TUFR.members).map(m=>`<li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("")
-    : `<li><span style="margin-left:0">${TUFR.season} roster coming soon.</span></li>`;
+  if(!TUFR.members.length){ const sec=c.closest("section"); if(sec) sec.remove(); return; } // hide until names are added
+  c.innerHTML = byName(TUFR.members).map(m=>`<li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("");
 }
 function renderAlumni(id){
   const c=document.getElementById(id); if(!c) return;
