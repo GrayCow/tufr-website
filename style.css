@@ -96,10 +96,8 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .roster-list li span{margin-left:auto;color:var(--grey);font-size:.85rem}
 .roster-cols{columns:2;column-gap:3rem}
 
-.ig-strip{display:flex;gap:.8rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.4rem}
-.ig-tile{flex:0 0 220px;scroll-snap-align:start}
-.ig-tile img,.ig-tile .ph{width:100%;aspect-ratio:1;object-fit:cover}
-.ig-tile:hover img,.ig-tile:hover .ph{opacity:.85}
+.ig-live{position:relative;overflow:hidden;aspect-ratio:3/1}
+.ig-live iframe{position:absolute;left:0;top:-158px;width:100%;height:1400px;border:0}
 
 /* alumni legacy grid */
 .alumni-season{border-top:1px solid var(--line);padding:2rem 0;display:grid;grid-template-columns:200px 1fr;gap:2rem}

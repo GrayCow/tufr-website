@@ -12,9 +12,6 @@ const TUFR = {
   tiktok: "https://www.tiktok.com/@tu.formula.racing",
   address: "One Trinity Pl, San Antonio, TX 78212",
 
-  // Follow Along strip on the homepage: image paths in /photos (extra slots show placeholders).
-  igPhotos: ["photos/team-photo.jpg", "photos/car-hero.jpg", "photos/what-is-fsae.jpg", "", "", ""],
-
   /* ---------- CURRENT TEAM ---------- */
   leadership: [
     { name: "Clayton Yeoman", role: "President", major: "Chassis Development", photo: "" },
@@ -140,11 +137,6 @@ function renderAlumni(id){
         ${a.members.length ? `<h4 class="alumni-label">Members</h4><ul class="alumni-names">${a.members.map(p=>chip(p)).join("")}</ul>` : ""}
       </div>
     </div>`).join("");
-}
-function renderIgStrip(id){
-  const c=document.getElementById(id); if(!c) return;
-  c.innerHTML = TUFR.igPhotos.map(p=>`<a href="${TUFR.instagram}" class="ig-tile" aria-label="TUFR on Instagram">${
-    p ? `<img src="${p}" alt="" loading="lazy">` : `<div class="ph sq">photo</div>`}</a>`).join("");
 }
 function renderNews(id, limit){
   const c=document.getElementById(id); if(!c) return;
