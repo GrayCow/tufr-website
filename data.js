@@ -111,6 +111,7 @@ function photoOrPh(src, alt){
   return src ? `<img src="${src}" alt="${alt}" style="aspect-ratio:1;object-fit:cover;width:100%">`
              : `<div class="ph sq">photo: ${alt}</div>`;
 }
+const byName = list => [...list].sort((a,b)=>a.name.localeCompare(b.name));
 function renderLeadership(id){
   const c=document.getElementById(id); if(!c) return;
   c.innerHTML = TUFR.leadership.map(m=>`
@@ -121,7 +122,7 @@ function renderLeadership(id){
 function renderMembers(id){
   const c=document.getElementById(id); if(!c) return;
   c.innerHTML = TUFR.members.length
-    ? TUFR.members.map(m=>`<li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("")
+    ? byName(TUFR.members).map(m=>`<li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("")
     : `<li><span style="margin-left:0">${TUFR.season} roster coming soon.</span></li>`;
 }
 function renderAlumni(id){
@@ -134,7 +135,7 @@ function renderAlumni(id){
       <div>
         <h4 class="alumni-label">Leadership</h4>
         <ul class="alumni-names">${a.leadership.map(p=>chip(p,"lead")).join("")}</ul>
-        ${a.members.length ? `<h4 class="alumni-label">Members</h4><ul class="alumni-names">${a.members.map(p=>chip(p)).join("")}</ul>` : ""}
+        ${a.members.length ? `<h4 class="alumni-label">Members</h4><ul class="alumni-names">${byName(a.members).map(p=>chip(p)).join("")}</ul>` : ""}
       </div>
     </div>`).join("");
 }
