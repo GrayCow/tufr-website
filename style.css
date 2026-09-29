@@ -153,11 +153,9 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .partner-logos .card img{max-height:clamp(50px,9.5vw,116px);max-width:100%;width:auto}
 .partner-logos .card b{font-size:clamp(.78rem,1.5vw,1.05rem)}
 .partner-thanks{flex:0 0 100%;text-align:center;margin-top:.8rem;font-size:clamp(1rem,2vw,1.2rem);color:var(--ink)}
-:root[data-theme="dark"] .logo img,:root[data-theme="dark"] .footer-logo img,:root[data-theme="dark"] /* homepage hero: team photo anchored to the bottom, fading up into the text */
-.hero.photo-bottom{position:relative;overflow:hidden;isolation:isolate}
-.hero.photo-bottom::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--photo) center bottom/cover no-repeat;-webkit-mask-image:linear-gradient(180deg,transparent 0%,transparent 28%,#000 72%);mask-image:linear-gradient(180deg,transparent 0%,transparent 28%,#000 72%)}
-.hero.photo-bottom::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--white) 0%,color-mix(in srgb,var(--white) 88%,transparent) 55%,transparent 88%)}
-.hero-mark{filter:brightness(1.7) saturate(1.15)}
+:root[data-theme="dark"] .logo img,:root[data-theme="dark"] .footer-logo img,:root[data-theme="dark"] .hero-mark{filter:brightness(1.7) saturate(1.15)}
+/* homepage hero: team photo under the text; the empty sky at its top fades into the page so no face is covered */
+.hero-team{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 60%;margin-top:1.5rem;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 30%);mask-image:linear-gradient(180deg,transparent 0%,#000 30%)}
 :root[data-theme="dark"] .partner-logos .card{background:#F3EEEA}
 :root[data-theme="dark"] .partner-logos .card b{color:#201C1B}
 .partner-logos .card{border-color:transparent}
