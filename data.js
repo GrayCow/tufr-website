@@ -5,7 +5,7 @@
    ============================================================ */
 
 const TUFR = {
-  season: "2025–26",
+  season: "2026–27",
   applyUrl: "https://forms.gle/oPT2x9uxfmZrcNns7",
   email: "tufr@trinity.edu",
   instagram: "https://www.instagram.com/tu.formula.racing/",
@@ -14,7 +14,7 @@ const TUFR = {
   stats: [
     { label: "Founded", value: "2023" },
     { label: "Members", value: "30+" },
-    { label: "Current Build", value: "Car 2" },
+    { label: "Current Build", value: "Car 3" },
     { label: "Majors Welcome", value: "All" },
   ],
 
