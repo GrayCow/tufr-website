@@ -86,6 +86,7 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.4rem}
 .member{border:1px solid var(--line);transition:.15s}
 .member:hover{border-color:var(--red)}
+.avatar{height:96px;display:flex;align-items:center;justify-content:center;background:var(--offwhite);color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.4rem;letter-spacing:.04em;border-bottom:1px solid var(--line)}
 .member .info{padding:1rem 1.1rem}
 .member h3{font-weight:700;font-size:1.02rem}
 .member .role{color:var(--red);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:.25rem}

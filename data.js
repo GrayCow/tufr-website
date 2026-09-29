@@ -117,7 +117,7 @@ const TUFR = {
    ============================================================ */
 function photoOrPh(src, alt){
   return src ? `<img src="${src}" alt="${alt}" style="aspect-ratio:1;object-fit:cover;width:100%">`
-             : `<div class="ph sq">photo: ${alt}</div>`;
+             : `<div class="avatar" role="img" aria-label="${alt}">${alt.split(/\s+/).filter(Boolean).map((w,i,a)=>(i===0||i===a.length-1)?w[0]:"").join("").toUpperCase()}</div>`;
 }
 const byName = list => [...list].sort((a,b)=>a.name.localeCompare(b.name));
 function renderLeadership(id){
