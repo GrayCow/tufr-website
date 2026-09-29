@@ -123,7 +123,16 @@
         </div>
       </div>
     </div>
-    <div class="ph" style="margin-top:2rem;aspect-ratio:21/9;width:100%">photo: team history</div>
+  </div>
+</section>
+
+<section class="bordered">
+  <div class="container">
+    <div class="head-row">
+      <div><p class="eyebrow">Gallery</p><h2>The Team in Photos</h2></div>
+      <div class="gallery-nav"><button type="button" class="gallery-btn" data-dir="-1" aria-label="Previous photos">&larr;</button><button type="button" class="gallery-btn" data-dir="1" aria-label="Next photos">&rarr;</button></div>
+    </div>
+    <div class="gallery" id="gallery" tabindex="0" aria-label="Team photo gallery"></div>
   </div>
 </section>
 
@@ -170,6 +179,7 @@
 </footer>
 
 <script src="data.js"></script>
+<script>renderGallery("gallery")</script>
 <style>@media(max-width:900px){#goals-grid{grid-template-columns:1fr!important}}</style>
 </body>
 </html>

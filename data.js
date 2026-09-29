@@ -11,6 +11,9 @@ const TUFR = {
   instagram: "https://www.instagram.com/tu.formula.racing/",
   tiktok: "https://www.tiktok.com/@tu.formula.racing",
 
+  // About page gallery: { src: "photos/gallery/name.jpg", caption: "Optional caption" }. Empty shows placeholders.
+  galleryPhotos: [],
+
   // News comes from a published Google Sheet (CSV link). Leave "" to use the posts in news[] below.
   // See README.md, "Posting news".
   newsSheetUrl: "",
@@ -201,6 +204,17 @@ function renderNews(id, limit){
         <h3>${escapeHtml(n.title)}</h3><p style="white-space:pre-line">${escapeHtml(n.body)}</p></div>`).join("")
       : `<p class="muted">No updates yet. Check back soon.</p>`;
   });
+}
+function renderGallery(id){
+  const c=document.getElementById(id); if(!c) return;
+  const photos = TUFR.galleryPhotos;
+  c.innerHTML = photos.length
+    ? photos.map(p=>`<figure class="gallery-tile"><img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.caption||"TUFR team photo")}" loading="lazy">${p.caption?`<figcaption>${escapeHtml(p.caption)}</figcaption>`:""}</figure>`).join("")
+    : Array.from({length:6},()=>`<figure class="gallery-tile"><div class="ph">photo coming soon</div></figure>`).join("");
+  const step = dir => { const t=c.querySelector(".gallery-tile"); if(!t) return;
+    c.scrollBy({left:dir*(t.getBoundingClientRect().width+16), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); };
+  document.querySelectorAll(".gallery-btn").forEach(b=>b.addEventListener("click",()=>step(+b.dataset.dir)));
+  c.addEventListener("keydown",e=>{ if(e.key==="ArrowRight") step(1); if(e.key==="ArrowLeft") step(-1); });
 }
 function renderTiers(id){
   const c=document.getElementById(id); if(!c) return;

@@ -29,3 +29,10 @@ News comes from a Google Sheet, so you can post without touching the code.
 Add a new row: Date (like `Oct 5, 2026`), Type (like `Monthly` or `Announcement`), Title, and Message. The site shows newest first and updates within a few minutes. Keep the header row and do not rename the columns. Only give edit access to people who should be able to post.
 
 If the sheet cannot be reached, the site shows the posts saved in `news` in `data.js` instead.
+
+## Adding gallery photos
+
+The About page gallery shows placeholders until you add photos.
+
+1. Shrink each photo first, for example `sips -Z 1600 -s format jpeg -s formatOptions 70 original.jpg --out photos/gallery/name.jpg`.
+2. In `data.js`, add a line to `galleryPhotos`: `{ src: "photos/gallery/name.jpg", caption: "Optional caption" }`.
