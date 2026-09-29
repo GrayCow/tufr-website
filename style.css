@@ -121,6 +121,8 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .tier ul{list-style:none}
 .tier li{padding:.5rem 0;border-bottom:1px solid var(--line);font-size:.87rem;color:var(--grey)}
 .partner-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1.4rem}
+.partner-logos .card{border-color:transparent;background:none}
+.partner-logos .card:hover{border-color:var(--red)}
 .partner-logos div{aspect-ratio:2/1;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:.72rem}
 
 /* about: process steps + timeline */
