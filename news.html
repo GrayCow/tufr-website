@@ -35,24 +35,13 @@
   <div class="container">
     <p class="eyebrow">Monthly &amp; quarterly team updates</p>
     <h1>Pit <span class="accent">Wall</span></h1>
-    <p class="lede">Build progress, milestones, and season announcements. These are the same updates that go out to our mailing list.</p>
+    <p class="lede">Build progress, milestones, and season announcements.</p>
   </div>
 </header>
 
 <section>
-  <div class="container" style="display:grid;grid-template-columns:2fr 1fr;gap:3rem" id="news-cols">
-    <div class="grid2" id="all-news" style="grid-template-columns:1fr"></div>
-    <aside>
-      <div class="card" style="border-left:4px solid var(--red);position:sticky;top:90px">
-        <p class="eyebrow">Race Radio</p>
-        <h3>Get updates by email</h3>
-        <p class="muted">Monthly during build season, quarterly otherwise. No spam, just the car.</p>
-        <form class="mail" style="margin-top:1rem;display:flex;flex-direction:column;gap:.6rem">
-          <input type="email" placeholder="you@email.com" aria-label="Email" required style="border:1px solid var(--line);padding:.75rem 1rem;font-family:inherit">
-          <button class="btn solid" type="submit">Subscribe</button>
-        </form>
-      </div>
-    </aside>
+  <div class="container">
+    <div class="grid2" id="all-news" style="grid-template-columns:1fr;max-width:820px"></div>
   </div>
 </section>
 
@@ -78,6 +67,5 @@
 
 <script src="data.js"></script>
 <script>renderNews("all-news");</script>
-<style>@media(max-width:860px){#news-cols{grid-template-columns:1fr!important}}</style>
 </body>
 </html>
