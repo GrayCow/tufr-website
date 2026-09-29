@@ -125,6 +125,17 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .thumb.active{opacity:1;border-color:var(--red)}
 .season-photo{display:block;width:100%;margin-top:1.4rem;height:auto;border:1px solid var(--line)}
 
+/* news page signup box */
+.card.signup-card{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.card.signup-card:hover{border-color:var(--maroon)}
+.signup-card .eyebrow{color:#F3C9CF}
+.signup-card h3{color:#fff}
+.signup-card p.muted,.signup-card .muted{color:#F0D8DB}
+.signup-card input{border:1px solid transparent;background:#fff;color:#201C1B;padding:.75rem 1rem;font-family:inherit}
+.signup-card input::placeholder{color:#7A6E6B}
+.signup-card button{background:#fff;color:var(--maroon);border:none;padding:.8rem 1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+.signup-card button:hover{background:#F3C9CF}
+
 /* alumni legacy grid */
 .alumni-season{border-top:1px solid var(--line);padding:2rem 0;display:grid;grid-template-columns:200px 1fr;gap:2rem}
 .alumni-season .yr{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.9rem;text-transform:uppercase}
