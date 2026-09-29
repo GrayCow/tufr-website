@@ -92,13 +92,13 @@ const TUFR = {
 
   // Leave logo "" to show the name as text until a file is added to /photos.
   currentSponsors: [
-    { name: "Principle Automotive", logo: "", url: "https://www.principleautomotive.com" },
-    { name: "Ancira Auto Group", logo: "", url: "https://www.ancira.com" },
-    { name: "Northside Automotive", logo: "", url: "#" },
-    { name: "Gene Haas Foundation", logo: "", url: "https://haasfoundation.org" },
+    { name: "Principle Automotive", logo: "photos/sponsor-principle.png", url: "https://www.principleautomotive.com" },
+    { name: "Ancira Auto Group", logo: "photos/sponsor-ancira.png", url: "https://www.ancira.com" },
+    { name: "Northside Automotive", logo: "photos/sponsor-northside.png", url: "#" },
+    { name: "Gene Haas Foundation", logo: "photos/sponsor-gene-haas.png", url: "https://haasfoundation.org" },
     { name: "Econtrols", logo: "photos/sponsor-econtrols.png", url: "https://www.econtrols.com" },
-    { name: "SGA Trinity University", logo: "", url: "https://www.trinity.edu" },
-    { name: "Peddle", logo: "", url: "https://www.peddle.com" },
+    { name: "SGA Trinity University", logo: "photos/sponsor-sga.png", url: "https://www.trinity.edu" },
+    { name: "Peddle", logo: "photos/sponsor-peddle.png", url: "https://www.peddle.com" },
   ],
 
   individualDonors: "Barbara Pritzlaff '78 and the Yeoman Family",
