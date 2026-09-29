@@ -9,6 +9,7 @@ const TUFR = {
   applyUrl: "https://forms.gle/oPT2x9uxfmZrcNns7",
   email: "tufr@trinity.edu",
   instagram: "https://www.instagram.com/tu.formula.racing/",
+  tiktok: "https://www.tiktok.com/@tu.formula.racing",
   address: "One Trinity Pl, San Antonio, TX 78212",
 
   // Follow Along strip on the homepage: image paths in /photos (extra slots show placeholders).
@@ -173,6 +174,7 @@ function wireCommon(){
   document.querySelectorAll("[data-email-text]").forEach(e=>e.textContent=TUFR.email);
   document.querySelectorAll("[data-season]").forEach(e=>e.textContent=TUFR.season);
   document.querySelectorAll("[data-ig]").forEach(a=>a.href=TUFR.instagram);
+  document.querySelectorAll("[data-tiktok]").forEach(a=>a.href=TUFR.tiktok);
   document.querySelectorAll("[data-address]").forEach(e=>e.textContent=TUFR.address);
   document.querySelectorAll("form.mail").forEach(f=>f.addEventListener("submit",e=>{
     e.preventDefault(); f.innerHTML='<span class="muted">Subscribed ✓ Updates land monthly/quarterly.</span>';

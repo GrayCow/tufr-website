@@ -68,6 +68,7 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 
 /* section header row */
 .head-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2.2rem;flex-wrap:wrap;gap:1rem}
+.social-links{display:flex;gap:1.4rem}
 .head-row a{font-size:.85rem;font-weight:600;color:var(--red)}
 
 /* cards */
