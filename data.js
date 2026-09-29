@@ -94,10 +94,10 @@ const TUFR = {
   currentSponsors: [
     { name: "Principle Automotive", logo: "photos/sponsor-principle.png", url: "https://www.principleautomotive.com" },
     { name: "Ancira Auto Group", logo: "photos/sponsor-ancira.png", url: "https://www.ancira.com" },
-    { name: "Northside Automotive", logo: "photos/sponsor-northside.png", url: "#" },
+    { name: "Northside Automotive", logo: "photos/sponsor-northside.png", url: "https://www.thenorthsideautogroup.com/" },
     { name: "Gene Haas Foundation", logo: "photos/sponsor-gene-haas.png", url: "https://haasfoundation.org" },
     { name: "Econtrols", logo: "photos/sponsor-econtrols.png", url: "https://www.econtrols.com" },
-    { name: "SGA Trinity University", logo: "photos/sponsor-sga.png", url: "https://www.trinity.edu" },
+    { name: "SGA Trinity University", logo: "photos/sponsor-sga.png", url: "https://trinity.edu/sga" },
     { name: "Peddle", logo: "photos/sponsor-peddle.png", url: "https://www.peddle.com" },
   ],
 
