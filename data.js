@@ -11,6 +11,9 @@ const TUFR = {
   instagram: "https://www.instagram.com/tu.formula.racing/",
   tiktok: "https://www.tiktok.com/@tu.formula.racing",
 
+  // Pitwall newsletter (Buttondown). Signup posts straight to Buttondown, which sends the confirmation email.
+  newsletterUrl: "https://buttondown.com/api/emails/embed-subscribe/TUFR",
+
   // About page gallery: { src: "photos/gallery/name.jpg", caption: "Optional caption" }. Empty shows placeholders.
   galleryPhotos: [
     { src: "photos/team-2026.jpg", caption: "The 2025–26 team" },
@@ -301,8 +304,8 @@ function wireCommon(){
   document.querySelectorAll("[data-ig]").forEach(a=>a.href=TUFR.instagram);
   document.querySelectorAll("[data-tiktok]").forEach(a=>a.href=TUFR.tiktok);
   document.querySelectorAll("[data-address]").forEach(e=>e.textContent=TUFR.address);
-  document.querySelectorAll("form.mail").forEach(f=>f.addEventListener("submit",e=>{
-    e.preventDefault(); f.innerHTML='<span class="muted">Subscribed ✓ Updates land monthly/quarterly.</span>';
-  }));
+  document.querySelectorAll("form.mail").forEach(f=>{
+    f.action=TUFR.newsletterUrl; f.method="post"; f.target="_blank";
+  });
 }
 document.addEventListener("DOMContentLoaded", wireCommon);
