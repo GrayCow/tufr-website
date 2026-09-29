@@ -79,8 +79,6 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
 
 /* social */
-.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem}
-.ig-grid .cell{aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--offwhite) 0 14px,var(--stripe) 14px 28px);border:1px solid var(--line)}
 
 /* team page */
 .member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.4rem}
@@ -97,8 +95,10 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .roster-list li span{margin-left:auto;color:var(--grey);font-size:.85rem}
 .roster-cols{columns:2;column-gap:3rem}
 
-.ig-embed{max-width:540px;margin:0 auto}
-.ig-embed iframe{width:100%;height:640px;border:1px solid var(--line);background:#fff}
+.ig-strip{display:flex;gap:.8rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.4rem}
+.ig-tile{flex:0 0 220px;scroll-snap-align:start}
+.ig-tile img,.ig-tile .ph{width:100%;aspect-ratio:1;object-fit:cover}
+.ig-tile:hover img,.ig-tile:hover .ph{opacity:.85}
 
 /* alumni legacy grid */
 .alumni-season{border-top:1px solid var(--line);padding:2rem 0;display:grid;grid-template-columns:200px 1fr;gap:2rem}
@@ -167,8 +167,7 @@ footer{background:var(--offwhite);border-top:1px solid var(--line);padding:3.5re
   .nav-cta{display:inline-block;margin-top:.9rem;text-align:center;border-bottom:none!important}
   .about-grid{grid-template-columns:1fr}
   .grid2{grid-template-columns:1fr}
-  .ig-grid{grid-template-columns:repeat(3,1fr)}
-  .partner-logos{grid-template-columns:repeat(2,1fr)}
+    .partner-logos{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .tl-item{grid-template-columns:1fr;gap:.4rem}
