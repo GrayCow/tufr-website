@@ -65,7 +65,8 @@ async function handler(req, res) {
     if (!r.ok) throw new Error("feed " + r.status);
     const items = parseFeed(await r.text());
     // Cache at Vercel's edge for 5 minutes so a new email shows up quickly without hammering Buttondown.
-    res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
+    // An empty result is only cached briefly, in case Buttondown's servers were momentarily behind.
+    res.setHeader("Cache-Control", items.length ? "public, s-maxage=300, stale-while-revalidate=3600" : "public, s-maxage=30");
     res.status(200).json(items);
   } catch (e) {
     res.setHeader("Cache-Control", "no-store");
