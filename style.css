@@ -20,7 +20,7 @@ img{max-width:100%;display:block}
 nav{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid var(--line)}
 .nav-inner{max-width:1180px;margin:0 auto;padding:1.1rem 2rem;display:flex;justify-content:space-between;align-items:center}
 .logo{order:1;display:flex;align-items:center}
-.logo img{height:1.8rem;width:auto;display:block}
+.logo img{height:1.5rem;width:auto;display:block}
 nav ul{order:2;margin-left:auto;display:flex;gap:2.2rem;list-style:none;align-items:center}
 nav ul a{font-size:.85rem;font-weight:500;color:var(--ink)}
 nav ul a:hover,nav ul a[aria-current]{color:var(--red)}
