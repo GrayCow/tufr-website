@@ -148,8 +148,9 @@ footer{background:var(--offwhite);border-top:1px solid var(--line);padding:3.5re
 .footer-grid ul{list-style:none}
 .footer-grid li{margin-bottom:.6rem;font-size:.9rem;color:var(--grey)}
 .footer-grid a:hover{color:var(--red)}
-.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.7rem;text-transform:uppercase;margin-bottom:.8rem}
-.footer-logo span{color:var(--red)}
+.footer-logo{margin-bottom:.8rem}
+.footer-logo img{height:1.8rem;width:auto}
+.hero-mark{display:inline-block;height:.72em;width:auto;vertical-align:baseline;margin-left:.05em}
 .footer-bottom{border-top:1px solid var(--line);margin-top:2.5rem;padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--grey)}
 .mail-inline{display:flex;gap:.5rem;margin-top:.5rem}
 .mail-inline input{background:var(--white);border:1px solid var(--line);color:var(--ink);padding:.7rem .9rem;font-family:inherit;width:100%}
