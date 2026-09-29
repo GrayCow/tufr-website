@@ -25,39 +25,63 @@ const TUFR = {
 
   /* ---------- CURRENT TEAM ---------- */
   leadership: [
-    { name: "First Last", role: "Team Captain", major: "Engineering Science '26", photo: "" },
-    { name: "First Last", role: "Chief Engineer", major: "Engineering Science '26", photo: "" },
-    { name: "First Last", role: "Business Lead", major: "Business '27", photo: "" },
-    { name: "First Last", role: "Powertrain Lead", major: "Engineering Science '27", photo: "" },
-    { name: "First Last", role: "Chassis Lead", major: "Engineering Science '27", photo: "" },
-    { name: "First Last", role: "Electronics Lead", major: "Computer Science '28", photo: "" },
+    { name: "Clayton Yeoman", role: "President", major: "Chassis Development", photo: "" },
+    { name: "Addison Doss", role: "VP of Business Development", major: "Business", photo: "" },
   ],
 
-  members: [
-    { name: "First Last", subteam: "Chassis & Suspension", year: "'27" },
-    { name: "First Last", subteam: "Powertrain", year: "'28" },
-    { name: "First Last", subteam: "Aerodynamics", year: "'28" },
-    { name: "First Last", subteam: "Electronics & Data", year: "'29" },
-    { name: "First Last", subteam: "Business Operations", year: "'29" },
-    { name: "First Last", subteam: "Powertrain", year: "'27" },
-  ],
+  // Add current members here: { name: "First Last", subteam: "Powertrain", year: "'28" }
+  members: [],
 
   /* ---------- ALUMNI / PAST SEASONS ----------
-     Add a new block each year. captain:true adds a ★. */
+     Add a new block each year (newest first).
+     leadership: { name, class, role, subteam }   members: { name, class, subteam } */
   alumni: [
     {
-      season: "2024–25", note: "CAR 1 development season",
-      names: [
-        { name: "First Last", captain: true },
-        { name: "First Last" }, { name: "First Last" }, { name: "First Last" },
+      season: "2025–26", note: "Car 2",
+      leadership: [
+        { name: "Kaelin Leishman", class: "'26", role: "President", subteam: "Suspension" },
+        { name: "Karenna Edwards", class: "'26", role: "VP of Business Development", subteam: "Business" },
+        { name: "Clayton Yeoman", class: "'27", role: "VP of Engineering", subteam: "Chassis Development" },
+      ],
+      members: [
+        { name: "Tristan Downing", class: "'28", subteam: "Ergonomics" },
+        { name: "Daniel Pinzon", class: "'26", subteam: "Powertrain" },
+        { name: "Reid Stubbert", class: "'28", subteam: "Ergonomics, Lead" },
+        { name: "Ruby Ramirez", class: "'29" },
+        { name: "Ana Arabuli", class: "'29" },
+        { name: "Charles Peterson", class: "'29" },
+        { name: "Joseph Emmett", class: "'29" },
+        { name: "James Rush", class: "'26", subteam: "Engineering, Lead" },
+      ],
+    },
+    {
+      season: "2024–25", note: "Car 1 development",
+      leadership: [
+        { name: "Daniel Chia", class: "'25", role: "President", subteam: "Engineering, Lead" },
+        { name: "Kaelin Leishman", class: "'26", role: "VP", subteam: "Suspension" },
+        { name: "Karenna Edwards", class: "'26", role: "VP of Business Development", subteam: "Business" },
+      ],
+      members: [
+        { name: "Austin Parcell", class: "'25", subteam: "Powertrain, Lead" },
+        { name: "Clayton Yeoman", class: "'27", subteam: "Chassis Development" },
+        { name: "Julian Rabago", class: "'27", subteam: "Powertrain, Lead" },
+        { name: "Henry Heater", class: "'27", subteam: "Powertrain, Lead" },
+        { name: "Brennan Jimenez", class: "'27", subteam: "Suspension" },
+        { name: "Reid Stubbert", class: "'28", subteam: "Ergonomics, Lead" },
+        { name: "Cora Lewis", class: "'25", subteam: "Electrical" },
+        { name: "Daniel Pinzon", class: "'26", subteam: "Powertrain" },
+        { name: "Tristan Downing", class: "'28", subteam: "Ergonomics" },
+        { name: "Rory Duncanson", class: "'26" },
       ],
     },
     {
       season: "2023–24", note: "Founding season",
-      names: [
-        { name: "First Last", captain: true },
-        { name: "First Last" }, { name: "First Last" },
+      leadership: [
+        { name: "Daniel Chia", class: "'25", role: "President", subteam: "Engineering" },
+        { name: "Kaelin Leishman", class: "'26", role: "VP", subteam: "Suspension" },
+        { name: "Karenna Edwards", class: "'26", role: "VP of Business, Founder", subteam: "Business" },
       ],
+      members: [],
     },
   ],
 
@@ -118,15 +142,22 @@ function renderLeadership(id){
 }
 function renderMembers(id){
   const c=document.getElementById(id); if(!c) return;
-  c.innerHTML = TUFR.members.map(m=>`
-    <li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("");
+  c.innerHTML = TUFR.members.length
+    ? TUFR.members.map(m=>`<li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("")
+    : `<li><span>${TUFR.season} roster coming soon.</span></li>`;
 }
 function renderAlumni(id){
   const c=document.getElementById(id); if(!c) return;
+  const tag = p => [p.class, p.role, p.subteam].filter(Boolean).join(" · ");
+  const chip = (p,cls) => `<li class="${cls||""}"><b>${p.name}</b><span>${tag(p)}</span></li>`;
   c.innerHTML = TUFR.alumni.map(a=>`
     <div class="alumni-season">
       <div class="yr">${a.season}<small>${a.note||""}</small></div>
-      <ul class="alumni-names">${a.names.map(n=>`<li class="${n.captain?'captain':''}">${n.name}</li>`).join("")}</ul>
+      <div>
+        <h4 class="alumni-label">Leadership</h4>
+        <ul class="alumni-names">${a.leadership.map(p=>chip(p,"lead")).join("")}</ul>
+        ${a.members.length ? `<h4 class="alumni-label">Members</h4><ul class="alumni-names">${a.members.map(p=>chip(p)).join("")}</ul>` : ""}
+      </div>
     </div>`).join("");
 }
 function renderNews(id, limit){
