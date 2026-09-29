@@ -25,8 +25,23 @@ const TUFR = {
     { name: "Addison Doss", role: "VP of Business Development", major: "Business", photo: "" },
   ],
 
-  // Add current members here: { name: "First Last", subteam: "Powertrain", year: "'28" }
-  members: [],
+  // Current members: { name: "First Last", year: "'28" }. Add subteam: "Powertrain" to show a label.
+  members: [
+    { name: "Tristan Downing", year: "'28" },
+    { name: "Reid Stubbert", year: "'28" },
+    { name: "Charles Peterson", year: "'29" },
+    { name: "Joseph Emmett", year: "'29" },
+    { name: "Ana Arabuli", year: "'29" },
+    { name: "Ruby Ramirez", year: "'29" },
+    { name: "Ming Lee", year: "'30" },
+    { name: "Jayden Yeoman", year: "'30" },
+    { name: "Sam Roman", year: "'30" },
+    { name: "Gavin Chan", year: "'30" },
+    { name: "Harmon Bennett", year: "'30" },
+    { name: "Cullen Woodring", year: "'30" },
+    { name: "Boone Partee", year: "'28" },
+    { name: "Charles Gu", year: "'28" },
+  ],
 
   /* ---------- ALUMNI / PAST SEASONS ----------
      Add a new block each year (newest first).
@@ -130,7 +145,7 @@ function renderLeadership(id){
 function renderMembers(id){
   const c=document.getElementById(id); if(!c) return;
   if(!TUFR.members.length){ const sec=c.closest("section"); if(sec) sec.remove(); return; } // hide until names are added
-  c.innerHTML = byName(TUFR.members).map(m=>`<li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("");
+  c.innerHTML = byName(TUFR.members).map(m=>`<li><b>${m.name}</b><span>${[m.subteam,m.year].filter(Boolean).join(" · ")}</span></li>`).join("");
 }
 function renderAlumni(id){
   const c=document.getElementById(id); if(!c) return;
