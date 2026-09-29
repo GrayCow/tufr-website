@@ -36,7 +36,7 @@ const TUFR = {
 
   /* ---------- CURRENT TEAM ---------- */
   leadership: [
-    { name: "Clayton Yeoman", role: "President", major: "Chassis Development", photo: "" },
+    { name: "Clayton Yeoman", role: "President", major: "Chassis Development", photo: "photos/clayton-yeoman.jpg" },
     { name: "Addison Doss", role: "VP of Business Development", major: "Business", photo: "" },
   ],
 
