@@ -78,9 +78,18 @@ const TUFR = {
     { name: "Leeroy", amount: "$10,000+", top: true, perks: ["Tower benefits", "Team member data", "Invitation to car showing"] },
   ],
 
+  // Leave logo "" to show the name as text until a file is added to /photos.
   currentSponsors: [
-    // { name: "Sponsor Name", logo: "photos/sponsor.png", url: "https://..." },
+    { name: "Principle Automotive", logo: "", url: "https://www.principleautomotive.com" },
+    { name: "Ancira Auto Group", logo: "", url: "https://www.ancira.com" },
+    { name: "Northside Automotive", logo: "", url: "#" },
+    { name: "Gene Haas Foundation", logo: "", url: "https://haasfoundation.org" },
+    { name: "Econtrols", logo: "photos/sponsor-econtrols.png", url: "https://www.econtrols.com" },
+    { name: "SGA Trinity University", logo: "", url: "https://www.trinity.edu" },
+    { name: "Peddle", logo: "", url: "https://www.peddle.com" },
   ],
+
+  individualDonors: "Barbara Pritzlaff '78 and the Yeoman Family",
 };
 
 /* ============================================================
@@ -136,9 +145,12 @@ function renderTiers(id){
 }
 function renderSponsors(id){
   const c=document.getElementById(id); if(!c) return;
-  c.innerHTML = TUFR.currentSponsors.length
-    ? TUFR.currentSponsors.map(s=>`<a href="${s.url}" class="card" style="text-align:center;display:flex;align-items:center;justify-content:center"><img src="${s.logo}" alt="${s.name}" style="max-height:56px"></a>`).join("")
-    : `<p class="muted">Your logo here. Become our first partner of the ${TUFR.season} season.</p>`;
+  const cards = TUFR.currentSponsors.map(s=>{
+    const inner = s.logo ? `<img src="${s.logo}" alt="${s.name}" style="max-height:56px">` : `<b>${s.name}</b>`;
+    return `<a href="${s.url}" class="card" style="text-align:center;display:flex;align-items:center;justify-content:center">${inner}</a>`;
+  }).join("");
+  const thanks = TUFR.individualDonors ? `<p class="muted" style="grid-column:1/-1;text-align:center;margin-top:.6rem">With special thanks to ${TUFR.individualDonors}.</p>` : "";
+  c.innerHTML = cards + thanks;
 }
 function wireCommon(){
   document.querySelectorAll("[data-apply]").forEach(a=>a.href=TUFR.applyUrl);
