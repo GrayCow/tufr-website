@@ -107,7 +107,7 @@ const TUFR = {
       leadership: [
         { name: "Daniel Chia", class: "'25", role: "President" },
         { name: "Kaelin Leishman", class: "'26", role: "VP of Engineering" },
-        { name: "Karenna Edwards", class: "'26", role: "VP of Business, Founder" },
+        { name: "Karenna Edwards", class: "'26", role: "VP of Business" },
       ],
       members: [],
     },
