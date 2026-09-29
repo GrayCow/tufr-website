@@ -108,7 +108,6 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .alumni-names li b{font-weight:600}
 .alumni-names li em{font-style:normal;font-weight:400;color:var(--grey);opacity:.7;margin-left:.2rem}
 .alumni-names li span{display:block;font-size:.72rem;color:var(--grey);margin-top:.15rem}
-.alumni-names li.lead{border-color:var(--red)}
 .alumni-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);font-weight:500;margin:1rem 0 .5rem}
 .alumni-label:first-child{margin-top:0}
 
