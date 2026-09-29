@@ -23,52 +23,53 @@ const TUFR = {
 
   /* ---------- ALUMNI / PAST SEASONS ----------
      Add a new block each year (newest first).
-     leadership: { name, class, role, subteam }   members: { name, class, subteam } */
+     leadership: { name, class, role }   members: { name, class, subteam }
+     Only give a member a subteam if they were its lead, e.g. "Powertrain, Lead". */
   alumni: [
     {
       season: "2025–26", note: "Car 2",
       leadership: [
-        { name: "Kaelin Leishman", class: "'26", role: "President", subteam: "Suspension" },
-        { name: "Karenna Edwards", class: "'26", role: "VP of Business Development", subteam: "Business" },
-        { name: "Clayton Yeoman", class: "'27", role: "VP of Engineering", subteam: "Chassis Development" },
+        { name: "Kaelin Leishman", class: "'26", role: "President" },
+        { name: "Karenna Edwards", class: "'26", role: "VP of Business Development" },
+        { name: "Clayton Yeoman", class: "'27", role: "VP of Engineering" },
       ],
       members: [
         { name: "Tristan Downing", class: "'28", subteam: "Ergonomics, Lead" },
-        { name: "Daniel Pinzon", class: "'26", subteam: "Powertrain" },
-        { name: "Reid Stubbert", class: "'28", subteam: "Ergonomics" },
-        { name: "Ruby Ramirez", class: "'29", subteam: "Engineering" },
-        { name: "Ana Arabuli", class: "'29", subteam: "Engineering" },
-        { name: "Charles Peterson", class: "'29", subteam: "Engineering" },
-        { name: "Joseph Emmett", class: "'29", subteam: "Engineering" },
+        { name: "Daniel Pinzon", class: "'26" },
+        { name: "Reid Stubbert", class: "'28" },
+        { name: "Ruby Ramirez", class: "'29" },
+        { name: "Ana Arabuli", class: "'29" },
+        { name: "Charles Peterson", class: "'29" },
+        { name: "Joseph Emmett", class: "'29" },
         { name: "James Rush", class: "'26", subteam: "Engineering, Lead" },
       ],
     },
     {
       season: "2024–25", note: "Car 1 development",
       leadership: [
-        { name: "Daniel Chia", class: "'25", role: "President", subteam: "Engineering, Lead" },
-        { name: "Kaelin Leishman", class: "'26", role: "VP", subteam: "Suspension" },
-        { name: "Karenna Edwards", class: "'26", role: "VP of Business Development", subteam: "Business" },
+        { name: "Daniel Chia", class: "'25", role: "President" },
+        { name: "Kaelin Leishman", class: "'26", role: "VP of Engineering" },
+        { name: "Karenna Edwards", class: "'26", role: "VP of Business Development" },
       ],
       members: [
         { name: "Austin Parcell", class: "'25", subteam: "Powertrain, Lead" },
-        { name: "Clayton Yeoman", class: "'27", subteam: "Chassis Development" },
-        { name: "Julian Rabago", class: "'27", subteam: "Powertrain, Lead" },
-        { name: "Henry Heater", class: "'27", subteam: "Powertrain, Lead" },
-        { name: "Brennan Jimenez", class: "'27", subteam: "Suspension" },
-        { name: "Reid Stubbert", class: "'28", subteam: "Ergonomics" },
-        { name: "Cora Lewis", class: "'25", subteam: "Electrical" },
-        { name: "Daniel Pinzon", class: "'26", subteam: "Powertrain" },
+        { name: "Clayton Yeoman", class: "'27" },
+        { name: "Julian Rabago", class: "'27" },
+        { name: "Henry Heater", class: "'27" },
+        { name: "Brennan Jimenez", class: "'27", subteam: "Suspension, Lead" },
+        { name: "Reid Stubbert", class: "'28" },
+        { name: "Cora Lewis", class: "'25" },
+        { name: "Daniel Pinzon", class: "'26", subteam: "Powertrain, Lead" },
         { name: "Tristan Downing", class: "'28", subteam: "Ergonomics, Lead" },
-        { name: "Rory Duncanson", class: "'26", subteam: "Electrical" },
+        { name: "Rory Duncanson", class: "'26" },
       ],
     },
     {
       season: "2023–24", note: "Founding season",
       leadership: [
-        { name: "Daniel Chia", class: "'25", role: "President", subteam: "Engineering" },
-        { name: "Kaelin Leishman", class: "'26", role: "VP", subteam: "Suspension" },
-        { name: "Karenna Edwards", class: "'26", role: "VP of Business, Founder", subteam: "Business" },
+        { name: "Daniel Chia", class: "'25", role: "President" },
+        { name: "Kaelin Leishman", class: "'26", role: "VP of Engineering" },
+        { name: "Karenna Edwards", class: "'26", role: "VP of Business, Founder" },
       ],
       members: [],
     },
