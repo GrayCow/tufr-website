@@ -63,7 +63,7 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 /* subteams / chips */
 .subteams{background:var(--offwhite)}
 .chip-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
-.chip{border:1px solid var(--line);background:var(--white);padding:.55rem 1rem;font-size:.85rem;color:var(--grey);border-radius:2px}
+.chip{border:1px solid var(--line);background:var(--white);padding:.55rem 1rem;font-size:.85rem;color:var(--ink);font-weight:600;border-radius:2px}
 .chip b{color:var(--ink);font-weight:600}
 
 /* section header row */
