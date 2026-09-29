@@ -121,7 +121,7 @@ function renderMembers(id){
   const c=document.getElementById(id); if(!c) return;
   c.innerHTML = TUFR.members.length
     ? TUFR.members.map(m=>`<li><b>${m.name}</b><span>${m.subteam} · ${m.year}</span></li>`).join("")
-    : `<li><span>${TUFR.season} roster coming soon.</span></li>`;
+    : `<li style="justify-content:flex-start"><span>${TUFR.season} roster coming soon.</span></li>`;
 }
 function renderAlumni(id){
   const c=document.getElementById(id); if(!c) return;
