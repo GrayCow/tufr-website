@@ -85,7 +85,7 @@ const TUFR = {
 
   /* ---------- SPONSORS (from the sponsorship packet) ---------- */
   sponsorTiers: [
-    { name: "Maroon", amount: "$500+", perks: ["Invitation to car showing", "Thank-you note", "Social media announcement", "Name on website", "Name on posters", "Team photo with the car"] },
+    { name: "Maroon", amount: "$500+", perks: ["Social media announcement", "Name on website", "Name on posters", "Team photo with the car"] },
     { name: "Tiger", amount: "$1,000+", perks: ["Maroon benefits", "Name on t-shirts", "Name on car", "Logo on website", "Shop tour and meet the team"] },
     { name: "Tower", amount: "$5,000+", perks: ["Tiger benefits", "Logo on car", "Dedication at monthly engineering meetings", "Sponsor spotlight post on social and News", "Season impact report"] },
     { name: "Leeroy", amount: "$10,000+", top: true, perks: ["Tower benefits", "Prime logo placement on car", "\"Presented by\" naming of a subsystem", "Recruiting access"] },
