@@ -158,7 +158,7 @@ function renderSponsors(id){
     const inner = s.logo ? `<img src="${s.logo}" alt="${s.name}">` : `<b>${s.name}</b>`;
     return `<a href="${s.url}" class="card" style="text-align:center;display:flex;align-items:center;justify-content:center">${inner}</a>`;
   }).join("");
-  const thanks = TUFR.individualDonors ? `<p class="muted" style="flex:0 0 100%;text-align:center;margin-top:.6rem">With special thanks to ${TUFR.individualDonors}.</p>` : "";
+  const thanks = TUFR.individualDonors ? `<p class="partner-thanks">With special thanks to ${TUFR.individualDonors}.</p>` : "";
   c.innerHTML = cards + thanks;
 }
 function wireCommon(){
