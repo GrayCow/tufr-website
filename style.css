@@ -107,6 +107,8 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .alumni-season .yr small{display:block;font-family:'Inter';font-weight:400;font-size:.72rem;letter-spacing:.08em;color:var(--grey);text-transform:uppercase;margin-top:.3rem}
 .alumni-names{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem}
 .alumni-names li{list-style:none;font-size:.85rem;color:var(--ink);background:var(--offwhite);border:1px solid var(--line);padding:.4rem .85rem;border-radius:2px}
+.alumni-names li{position:relative;transition:transform .15s ease,box-shadow .15s ease}
+.alumni-names li:hover{transform:scale(1.1);z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.18)}
 .alumni-names li b{font-weight:600}
 .alumni-names li em{font-style:normal;font-weight:400;color:var(--grey);opacity:.7;margin-left:.2rem}
 .alumni-names li span{display:block;font-size:.72rem;color:var(--grey);margin-top:.15rem}
@@ -130,7 +132,9 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 :root[data-theme="dark"] .partner-logos .card{background:#F3EEEA}
 :root[data-theme="dark"] .partner-logos .card b{color:#201C1B}
 .partner-logos .card{border-color:transparent}
-.partner-logos .card:hover{border-color:var(--red)}
+.partner-logos .card{transition:transform .15s ease,border-color .15s ease}
+.partner-logos .card:hover{border-color:var(--red);transform:scale(1.08)}
+@media (prefers-reduced-motion:reduce){.alumni-names li,.partner-logos .card{transition:none}.alumni-names li:hover,.partner-logos .card:hover{transform:none}}
 .partner-logos div{aspect-ratio:2/1;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:.72rem}
 
 /* about: process steps + timeline */
