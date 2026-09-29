@@ -12,7 +12,22 @@ const TUFR = {
   tiktok: "https://www.tiktok.com/@tu.formula.racing",
 
   // About page gallery: { src: "photos/gallery/name.jpg", caption: "Optional caption" }. Empty shows placeholders.
-  galleryPhotos: [],
+  galleryPhotos: [
+    { src: "photos/team-2026.jpg", caption: "The 2025–26 team" },
+    { src: "photos/team-2025.jpg", caption: "The 2024–25 team" },
+    { src: "photos/gallery/gallery-01.jpg" },
+    { src: "photos/gallery/gallery-02.jpg" },
+    { src: "photos/gallery/gallery-03.jpg" },
+    { src: "photos/gallery/gallery-04.jpg" },
+    { src: "photos/gallery/gallery-05.jpg" },
+    { src: "photos/gallery/gallery-06.jpg" },
+    { src: "photos/gallery/gallery-07.jpg" },
+    { src: "photos/gallery/gallery-08.jpg" },
+    { src: "photos/gallery/gallery-09.jpg" },
+    { src: "photos/gallery/gallery-10.jpg" },
+    { src: "photos/gallery/gallery-11.jpg" },
+    { src: "photos/gallery/gallery-12.jpg" },
+  ],
 
   // News comes from a published Google Sheet (CSV link). Leave "" to use the posts in news[] below.
   // See README.md, "Posting news".
@@ -49,7 +64,7 @@ const TUFR = {
      Only give a member a subteam if they were its lead, e.g. "Powertrain, Lead". */
   alumni: [
     {
-      season: "2025–26", note: "Car 2",
+      season: "2025–26", note: "Car 2", photo: "photos/team-2026.jpg",
       leadership: [
         { name: "Kaelin Leishman", class: "'26", role: "President" },
         { name: "Karenna Edwards", class: "'26", role: "VP of Business Development" },
@@ -67,7 +82,7 @@ const TUFR = {
       ],
     },
     {
-      season: "2024–25", note: "Car 1 development",
+      season: "2024–25", note: "Car 1 development", photo: "photos/team-2025.jpg",
       leadership: [
         { name: "Daniel Chia", class: "'25", role: "President" },
         { name: "Kaelin Leishman", class: "'26", role: "VP of Engineering" },
@@ -158,6 +173,7 @@ function renderAlumni(id){
         <h4 class="alumni-label">Leadership</h4>
         <ul class="alumni-names">${a.leadership.map(p=>chip(p,"lead")).join("")}</ul>
         ${a.members.length ? `<h4 class="alumni-label">Members</h4><ul class="alumni-names">${byName(a.members).map(p=>chip(p)).join("")}</ul>` : ""}
+        ${a.photo ? `<img class="season-photo" src="${escapeHtml(a.photo)}" alt="The ${escapeHtml(a.season)} TUFR team" loading="lazy">` : ""}
       </div>
     </div>`).join("");
 }
@@ -222,13 +238,44 @@ function renderNews(id, limit){
 function renderGallery(id){
   const c=document.getElementById(id); if(!c) return;
   const photos = TUFR.galleryPhotos;
-  c.innerHTML = photos.length
-    ? photos.map(p=>`<figure class="gallery-tile"><img src="${escapeHtml(p.src)}" alt="${escapeHtml(p.caption||"TUFR team photo")}" loading="lazy">${p.caption?`<figcaption>${escapeHtml(p.caption)}</figcaption>`:""}</figure>`).join("")
-    : Array.from({length:6},()=>`<figure class="gallery-tile"><div class="ph">photo coming soon</div></figure>`).join("");
-  const step = dir => { const t=c.querySelector(".gallery-tile"); if(!t) return;
-    c.scrollBy({left:dir*(t.getBoundingClientRect().width+16), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); };
-  document.querySelectorAll(".gallery-btn").forEach(b=>b.addEventListener("click",()=>step(+b.dataset.dir)));
-  c.addEventListener("keydown",e=>{ if(e.key==="ArrowRight") step(1); if(e.key==="ArrowLeft") step(-1); });
+  if(!photos.length){
+    c.innerHTML=`<div class="viewer"><figure class="slide"><div class="ph" style="height:min(60vh,520px)">photos coming soon</div></figure></div>`;
+    return;
+  }
+  // Thumbnails: photos/x.jpg uses photos/x-thumb.jpg when it exists, otherwise the full photo.
+  const thumbOf = src => src.replace(/\.jpg$/i,"-thumb.jpg");
+  c.tabIndex=0; c.setAttribute("aria-label","Team photo gallery. Use the left and right arrow keys to change photos.");
+  c.innerHTML=`
+    <div class="viewer">
+      <button type="button" class="gallery-btn prev" aria-label="Previous photo">&larr;</button>
+      <figure class="slide"><img alt=""><figcaption></figcaption></figure>
+      <button type="button" class="gallery-btn next" aria-label="Next photo">&rarr;</button>
+    </div>
+    <div class="gallery-count" aria-live="polite"></div>
+    <div class="thumbs">${photos.map((p,i)=>`<button type="button" class="thumb" aria-label="Show photo ${i+1}"><img src="${escapeHtml(thumbOf(p.src))}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(p.src)}'"></button>`).join("")}</div>`;
+  const img=c.querySelector(".slide img"), cap=c.querySelector("figcaption"), count=c.querySelector(".gallery-count");
+  const strip=c.querySelector(".thumbs"), thumbs=[...c.querySelectorAll(".thumb")];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i=0;
+  const show = n => {
+    i=(n+photos.length)%photos.length;
+    const p=photos[i];
+    img.src=p.src; img.alt=p.caption||("TUFR team photo "+(i+1));
+    cap.textContent=p.caption||"";
+    count.textContent=(i+1)+" / "+photos.length;
+    thumbs.forEach((t,k)=>{ t.classList.toggle("active",k===i); t.setAttribute("aria-current",k===i?"true":"false"); });
+    const t=thumbs[i]; strip.scrollTo({left:t.offsetLeft-(strip.clientWidth-t.offsetWidth)/2, behavior:reduce?"auto":"smooth"});
+    [i+1,i-1].forEach(k=>{ new Image().src=photos[(k+photos.length)%photos.length].src; }); // preload neighbors
+  };
+  c.querySelector(".prev").addEventListener("click",()=>show(i-1));
+  c.querySelector(".next").addEventListener("click",()=>show(i+1));
+  img.addEventListener("click",()=>show(i+1));
+  thumbs.forEach((t,k)=>t.addEventListener("click",()=>show(k)));
+  c.addEventListener("keydown",e=>{ if(e.key==="ArrowRight"){ show(i+1); e.preventDefault(); } if(e.key==="ArrowLeft"){ show(i-1); e.preventDefault(); } });
+  let x0=null;
+  c.addEventListener("touchstart",e=>{ x0=e.touches[0].clientX; },{passive:true});
+  c.addEventListener("touchend",e=>{ if(x0===null) return; const dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)>50) show(i+(dx<0?1:-1)); });
+  show(0);
 }
 function renderTiers(id){
   const c=document.getElementById(id); if(!c) return;
