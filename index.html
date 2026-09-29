@@ -12,14 +12,15 @@
 <body>
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="index.html">TU<span>FR</span></a>
-    <ul>
+    <a class="logo" href="index.html"><img src="photos/tufr-logo.png" alt="TUFR logo"></a>
+    <ul id="nav-menu">
       <li><a href="about.html">About</a></li>
       <li><a href="team.html">Team</a></li>
       <li><a href="news.html">News</a></li>
       <li><a href="sponsors.html">Sponsors</a></li>
       <li><a class="nav-cta" data-apply href="#">Join Us</a></li>
     </ul>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   </div>
 </nav>
 
@@ -35,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="container" style="padding-top:2.2rem"><div class="ph hero-photo">team / car hero photo</div></div>
+  <div class="container" style="padding-top:2.2rem"><img src="photos/team-photo.jpg" alt="TUFR team and car" class="hero-photo" style="width:100%;object-fit:cover"></div>
 </header>
 
 <section class="bordered">
@@ -44,21 +45,18 @@
     <div>
       <blockquote>"What we lack in experience, we make up for with passion and determination."</blockquote>
       <p>Trinity University Formula Racing is a student chapter of Formula SAE, the world's premier collegiate engineering design competition. Our team designs, builds, and races a formula-style car from the ground up. Every system is engineered entirely by students, from suspension geometry to body panels.</p>
+      <div style="text-align:center;margin-top:1.4rem"><a class="btn outline" href="about.html">Our Story</a></div>
     </div>
   </div>
 </section>
 
-<section class="subteams bordered">
-  <div class="container subteams-inner">
-    <div>
-      <p class="eyebrow">Where you fit in</p>
-      <h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Any major. Any year.</h2>
-      <div class="chip-row" id="subteam-chips"></div>
-    </div>
-    <div class="subteams-cta">
-      <p>No experience required, just curiosity and a willingness to learn hands-on.</p>
-      <a class="btn solid" data-apply href="#">Apply to Join</a>
-    </div>
+<section class="bordered" style="background:var(--offwhite);text-align:center">
+  <div class="container">
+    <span class="eyebrow">Partners &amp; Supporters</span>
+    <h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Our Sponsors</h2>
+    <p class="muted" style="max-width:34rem;margin:0 auto 2.2rem">Our partners provide the parts, tools, and funding that make it possible to design and race a car every season.</p>
+    <div class="partner-logos" id="home-sponsors" style="max-width:900px;margin:0 auto 2.2rem"></div>
+    <a class="btn solid" href="sponsors.html">Sponsorship Details</a>
   </div>
 </section>
 
@@ -73,16 +71,6 @@
   <div class="container">
     <div class="head-row"><h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Follow Along</h2><a data-ig href="#">@tu.formula.racing →</a></div>
     <div class="ig-grid"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
-  </div>
-</section>
-
-<section style="text-align:center">
-  <div class="container">
-    <span class="eyebrow">Partners &amp; Supporters</span>
-    <h2 style="font-size:clamp(2rem,4.5vw,2.8rem)">Our Sponsors</h2>
-    <p class="muted" style="max-width:34rem;margin:0 auto 2.2rem">Our partners provide the parts, tools, and funding that make it possible to design and race a car every season.</p>
-    <div class="partner-logos" id="home-sponsors" style="max-width:900px;margin:0 auto 2.2rem"></div>
-    <a class="btn solid" href="sponsors.html">Sponsorship Details</a>
   </div>
 </section>
 
@@ -108,7 +96,6 @@
 
 <script src="data.js"></script>
 <script>
-renderSubteamChips("subteam-chips");
 renderNews("home-news", 2);
 renderSponsors("home-sponsors");
 </script>

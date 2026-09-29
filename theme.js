@@ -25,5 +25,19 @@
       sync();
     });
     sync(); inner.appendChild(btn);
+
+    var navToggle = inner.querySelector(".nav-toggle");
+    var menu = document.getElementById("nav-menu");
+    if(navToggle && menu){
+      var BARS = navToggle.innerHTML;
+      var X = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>';
+      function setOpen(open){
+        menu.classList.toggle("open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        navToggle.innerHTML = open ? X : BARS;
+      }
+      navToggle.addEventListener("click", function(){ setOpen(!menu.classList.contains("open")); });
+      menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ setOpen(false); }); });
+    }
   });
 })();
