@@ -10,6 +10,10 @@ const TUFR = {
   email: "tufr@trinity.edu",
   instagram: "https://www.instagram.com/tu.formula.racing/",
   tiktok: "https://www.tiktok.com/@tu.formula.racing",
+
+  // News comes from a published Google Sheet (CSV link). Leave "" to use the posts in news[] below.
+  // See README.md, "Posting news".
+  newsSheetUrl: "",
   address: "One Trinity Pl, San Antonio, TX 78212",
 
   /* ---------- CURRENT TEAM ---------- */
@@ -140,12 +144,63 @@ function renderAlumni(id){
       </div>
     </div>`).join("");
 }
+function escapeHtml(v){
+  return String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function parseCsv(text){
+  const rows=[]; let row=[], cell="", q=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    if(q){
+      if(ch==='"'){ if(text[i+1]==='"'){ cell+='"'; i++; } else q=false; }
+      else cell+=ch;
+    } else if(ch==='"') q=true;
+    else if(ch===","){ row.push(cell); cell=""; }
+    else if(ch==="\n"||ch==="\r"){
+      if(ch==="\r"&&text[i+1]==="\n") i++;
+      row.push(cell); cell=""; rows.push(row); row=[];
+    } else cell+=ch;
+  }
+  if(cell!==""||row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+function parseDate(v){
+  const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(v).trim());
+  const d=m?new Date(+m[1],+m[2]-1,+m[3]):new Date(v);
+  return isNaN(d)?null:d;
+}
+function sheetToNews(text){
+  const rows=parseCsv(text); if(!rows.length) return [];
+  const head=rows[0].map(h=>h.trim().toLowerCase());
+  const col=n=>head.indexOf(n);
+  const items=rows.slice(1).map(r=>({
+    date:(r[col("date")]||"").trim(), type:(r[col("type")]||"").trim(),
+    title:(r[col("title")]||"").trim(), body:(r[col("message")]||r[col("body")]||"").trim(),
+  })).filter(n=>n.title||n.body);
+  return items.map((n,i)=>({n,i,d:parseDate(n.date)}))
+    .sort((a,b)=>(b.d&&a.d)?b.d-a.d:(a.d?-1:b.d?1:a.i-b.i)).map(x=>x.n);
+}
+// All news fetching lives here. To move news to another source (e.g. Buttondown), replace this function.
+function loadNews(){
+  if(!TUFR.newsSheetUrl) return Promise.resolve(TUFR.news);
+  return fetch(TUFR.newsSheetUrl,{cache:"no-store"})
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.text(); })
+    .then(t=>{ const n=sheetToNews(t); return n.length?n:TUFR.news; })
+    .catch(()=>TUFR.news);
+}
+function formatNewsDate(v){
+  const d=parseDate(v);
+  return d?d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}):v;
+}
 function renderNews(id, limit){
   const c=document.getElementById(id); if(!c) return;
-  const items = limit ? TUFR.news.slice(0,limit) : TUFR.news;
-  c.innerHTML = items.map(n=>`
-    <a class="card" href="#"><span class="eyebrow" style="color:var(--red)">${n.date}</span><span class="tag">${n.type}</span>
-      <h3>${n.title}</h3><p>${n.body}</p></a>`).join("");
+  loadNews().then(list=>{
+    const items = limit ? list.slice(0,limit) : list;
+    c.innerHTML = items.length ? items.map(n=>`
+      <div class="card"><span class="eyebrow" style="color:var(--red)">${escapeHtml(formatNewsDate(n.date))}</span>${n.type?`<span class="tag">${escapeHtml(n.type)}</span>`:""}
+        <h3>${escapeHtml(n.title)}</h3><p style="white-space:pre-line">${escapeHtml(n.body)}</p></div>`).join("")
+      : `<p class="muted">No updates yet. Check back soon.</p>`;
+  });
 }
 function renderTiers(id){
   const c=document.getElementById(id); if(!c) return;
