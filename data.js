@@ -33,9 +33,8 @@ const TUFR = {
     { src: "photos/gallery/gallery-13.jpg" },
   ],
 
-  // News comes from a published Google Sheet (CSV link). Leave "" to use the posts in news[] below.
-  // See README.md, "Posting news".
-  newsSheetUrl: "",
+  // News comes from the Pitwall newsletter on Buttondown (read by /api/news). Link used for "See all updates".
+  newsArchiveUrl: "https://buttondown.com/TUFR/archive",
   address: "One Trinity Pl, San Antonio, TX 78212",
 
   /* ---------- CURRENT TEAM ---------- */
@@ -116,14 +115,6 @@ const TUFR = {
     },
   ],
 
-  /* ---------- NEWS (monthly/quarterly) ---------- */
-  news: [
-    { date: "Sep 14, 2024", type: "Monthly", title: "Weekly Update",
-      body: "Thank you to everyone who met with us this week for our review of the engine we bought last week. We also discussed goals for each sub-team going into the fall." },
-    { date: "Sep 8, 2024", type: "Announcement", title: "First Meeting of the 24–25 Season",
-      body: "Thanks to the new and returning members who came out to meet the TUFR team. We're excited to get the ball rolling for the season." },
-  ],
-
   /* ---------- SPONSORS (from the sponsorship packet) ---------- */
   sponsorTiers: [
     { name: "Maroon", amount: "$500+", perks: ["Social media announcement", "Name on website", "Name on posters", "Team photo with the car"] },
@@ -184,59 +175,42 @@ function renderAlumni(id){
 function escapeHtml(v){
   return String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function parseCsv(text){
-  const rows=[]; let row=[], cell="", q=false;
-  for(let i=0;i<text.length;i++){
-    const ch=text[i];
-    if(q){
-      if(ch==='"'){ if(text[i+1]==='"'){ cell+='"'; i++; } else q=false; }
-      else cell+=ch;
-    } else if(ch==='"') q=true;
-    else if(ch===","){ row.push(cell); cell=""; }
-    else if(ch==="\n"||ch==="\r"){
-      if(ch==="\r"&&text[i+1]==="\n") i++;
-      row.push(cell); cell=""; rows.push(row); row=[];
-    } else cell+=ch;
-  }
-  if(cell!==""||row.length){ row.push(cell); rows.push(row); }
-  return rows;
-}
-function parseDate(v){
-  const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(v).trim());
-  const d=m?new Date(+m[1],+m[2]-1,+m[3]):new Date(v);
-  return isNaN(d)?null:d;
-}
-function sheetToNews(text){
-  const rows=parseCsv(text); if(!rows.length) return [];
-  const head=rows[0].map(h=>h.trim().toLowerCase());
-  const col=n=>head.indexOf(n);
-  const items=rows.slice(1).map(r=>({
-    date:(r[col("date")]||"").trim(), type:(r[col("type")]||"").trim(),
-    title:(r[col("title")]||"").trim(), body:(r[col("message")]||r[col("body")]||"").trim(),
-  })).filter(n=>n.title||n.body);
-  return items.map((n,i)=>({n,i,d:parseDate(n.date)}))
-    .sort((a,b)=>(b.d&&a.d)?b.d-a.d:(a.d?-1:b.d?1:a.i-b.i)).map(x=>x.n);
-}
-// All news fetching lives here. To move news to another source (e.g. Buttondown), replace this function.
+// All news fetching lives here. Emails sent from Buttondown appear automatically (see api/news.js).
 function loadNews(){
-  if(!TUFR.newsSheetUrl) return Promise.resolve(TUFR.news);
-  return fetch(TUFR.newsSheetUrl,{cache:"no-store"})
-    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.text(); })
-    .then(t=>{ const n=sheetToNews(t); return n.length?n:TUFR.news; })
-    .catch(()=>TUFR.news);
+  return fetch("/api/news")
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+    .then(list=>Array.isArray(list)?list:[]);
 }
 function formatNewsDate(v){
-  const d=parseDate(v);
-  return d?d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}):v;
+  const d=new Date(v);
+  return isNaN(d)?"":d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
 }
 function renderNews(id, limit){
   const c=document.getElementById(id); if(!c) return;
+  const empty=`<p class="muted">No updates yet. Check back soon, or subscribe to Pitwall to get them by email.</p>`;
   loadNews().then(list=>{
     const items = limit ? list.slice(0,limit) : list;
-    c.innerHTML = items.length ? items.map(n=>`
-      <div class="card"><span class="eyebrow" style="color:var(--red)">${escapeHtml(formatNewsDate(n.date))}</span>${n.type?`<span class="tag">${escapeHtml(n.type)}</span>`:""}
-        <h3>${escapeHtml(n.title)}</h3><p style="white-space:pre-line">${escapeHtml(n.body)}</p></div>`).join("")
-      : `<p class="muted">No updates yet. Check back soon.</p>`;
+    if(!items.length){ c.innerHTML=empty; return; }
+    c.innerHTML = items.map(n=>`
+      <article class="card news-card" tabindex="0" aria-expanded="false">
+        <span class="eyebrow" style="color:var(--red)">${escapeHtml(formatNewsDate(n.date))}</span>
+        <h3>${escapeHtml(n.title)}</h3>
+        <div class="news-body"><p>${escapeHtml(n.text)}</p></div>
+        ${/^https:\/\//.test(n.link||"")?`<a class="news-more" href="${escapeHtml(n.link)}" target="_blank" rel="noopener">Read the full update &rarr;</a>`:""}
+      </article>`).join("");
+    c.querySelectorAll(".news-card").forEach(card=>{
+      const body=card.querySelector(".news-body");
+      if(body.scrollHeight<=body.clientHeight+2){ card.classList.add("short"); card.removeAttribute("tabindex"); card.removeAttribute("aria-expanded"); return; }
+      const set=open=>{ card.classList.toggle("open",open); card.setAttribute("aria-expanded",open?"true":"false"); };
+      card.addEventListener("mouseenter",()=>set(true));
+      card.addEventListener("mouseleave",()=>{ if(document.activeElement!==card) set(false); });
+      card.addEventListener("focus",()=>set(true));
+      card.addEventListener("blur",()=>set(false));
+      card.addEventListener("click",e=>{ if(e.target.closest("a")) return; set(!card.classList.contains("open")); });
+      card.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); set(!card.classList.contains("open")); } });
+    });
+  }).catch(()=>{
+    c.innerHTML=`<p class="muted">We couldn't load updates right now. You can read them all on <a class="red" href="${escapeHtml(TUFR.newsArchiveUrl)}" target="_blank" rel="noopener">Buttondown</a>.</p>`;
   });
 }
 function renderGallery(id){

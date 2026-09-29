@@ -136,6 +136,19 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .signup-card button{background:#fff;color:var(--maroon);border:none;padding:.8rem 1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
 .signup-card button:hover{background:#F3C9CF}
 
+/* news cards: short preview that expands on hover, focus, or tap */
+.news-card{transition:border-color .15s}
+.news-card .news-body{position:relative;max-height:4.9em;overflow:hidden;transition:max-height .45s ease}
+.news-card .news-body p{white-space:pre-line}
+.news-card:not(.short) .news-body::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2em;background:linear-gradient(transparent,var(--white));pointer-events:none;transition:opacity .2s}
+.news-card:not(.short){cursor:pointer}
+.news-card.open .news-body{max-height:60em}
+.news-card.open .news-body::after{opacity:0}
+.news-card:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.news-more{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600;color:var(--red)}
+.news-more:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.news-card .news-body{transition:none}}
+
 /* alumni legacy grid */
 .alumni-season{border-top:1px solid var(--line);padding:2rem 0;display:grid;grid-template-columns:200px 1fr;gap:2rem}
 .alumni-season .yr{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.9rem;text-transform:uppercase}
