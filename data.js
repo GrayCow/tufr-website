@@ -39,8 +39,8 @@ const TUFR = {
 
   /* ---------- CURRENT TEAM ---------- */
   leadership: [
-    { name: "Clayton Yeoman", role: "President", major: "Chassis Development", photo: "photos/clayton-yeoman.jpg" },
-    { name: "Addison Doss", role: "VP of Business Development", major: "Business", photo: "" },
+    { name: "Clayton Yeoman", role: "President", major: "", photo: "photos/clayton-yeoman.jpg" },
+    { name: "Addison Doss", role: "VP of Business Development", major: "", photo: "" },
   ],
 
   // Current members: { name: "First Last", year: "'28" }. Add subteam: "Powertrain" to show a label.
@@ -149,7 +149,7 @@ function renderLeadership(id){
   const c=document.getElementById(id); if(!c) return;
   c.innerHTML = TUFR.leadership.map(m=>`
     <div class="member">${photoOrPh(m.photo,m.name)}
-      <div class="info"><h3>${m.name}</h3><div class="role">${m.role}</div><div class="meta">${m.major}</div></div>
+      <div class="info"><h3>${m.name}</h3><div class="role">${m.role}</div>${m.major?`<div class="meta">${m.major}</div>`:""}</div>
     </div>`).join("");
 }
 function renderMembers(id){
