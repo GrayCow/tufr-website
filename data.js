@@ -129,8 +129,8 @@ function renderMembers(id){
 }
 function renderAlumni(id){
   const c=document.getElementById(id); if(!c) return;
-  const tag = p => [p.class, p.role, p.subteam].filter(Boolean).join(" · ");
-  const chip = (p,cls) => `<li class="${cls||""}"><b>${p.name}</b><span>${tag(p)}</span></li>`;
+  const tag = p => [p.role, p.subteam].filter(Boolean).join(" · ");
+  const chip = (p,cls) => `<li class="${cls||""}"><b>${p.name}</b>${p.class?` <em>${p.class}</em>`:""}${tag(p)?`<span>${tag(p)}</span>`:""}</li>`;
   c.innerHTML = TUFR.alumni.map(a=>`
     <div class="alumni-season">
       <div class="yr">${a.season}<small>${a.note||""}</small></div>
