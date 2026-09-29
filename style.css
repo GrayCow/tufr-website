@@ -121,8 +121,8 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .tier ul{list-style:none}
 .tier li{padding:.5rem 0;border-bottom:1px solid var(--line);font-size:.87rem;color:var(--grey)}
 .partner-logos{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(.6rem,2vw,1.4rem)}
-.partner-logos .card{flex:0 1 clamp(104px,20vw,210px);min-width:0;padding:clamp(.4rem,1.2vw,1rem);border-radius:4px}
-.partner-logos .card img{max-height:clamp(42px,8vw,96px);max-width:100%;width:auto}
+.partner-logos .card{flex:0 1 clamp(110px,22vw,235px);min-width:0;padding:clamp(.4rem,1.2vw,1rem);border-radius:4px}
+.partner-logos .card img{max-height:clamp(50px,9.5vw,116px);max-width:100%;width:auto}
 .partner-logos .card b{font-size:clamp(.78rem,1.5vw,1.05rem)}
 .partner-thanks{flex:0 0 100%;text-align:center;margin-top:.8rem;font-size:clamp(1rem,2vw,1.2rem);color:var(--ink)}
 :root[data-theme="dark"] .logo img,:root[data-theme="dark"] .footer-logo img,:root[data-theme="dark"] .hero-mark{filter:brightness(1.7) saturate(1.15)}
