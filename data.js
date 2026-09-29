@@ -191,23 +191,30 @@ function renderNews(id, limit){
   loadNews().then(list=>{
     const items = limit ? list.slice(0,limit) : list;
     if(!items.length){ c.innerHTML=empty; return; }
-    c.innerHTML = items.map(n=>`
-      <article class="card news-card" tabindex="0" aria-expanded="false">
+    c.innerHTML = items.map((n,i)=>{
+      // n.html is sanitized on the server (api/news.js). If it is missing, fall back to the plain text.
+      const full = n.html || `<p style="white-space:pre-line">${escapeHtml(n.text)}</p>`;
+      const rich = /<img|<a /.test(n.html||"") || (n.text||"").length>220;
+      const link = /^https:\/\//.test(n.link||"") ? `<a class="news-more" href="${escapeHtml(n.link)}" target="_blank" rel="noopener">Read the full update &rarr;</a>` : "";
+      return `
+      <article class="card news-card">
         <span class="eyebrow" style="color:var(--red)">${escapeHtml(formatNewsDate(n.date))}</span>
         <h3>${escapeHtml(n.title)}</h3>
-        <div class="news-body"><p>${escapeHtml(n.text)}</p></div>
-        ${/^https:\/\//.test(n.link||"")?`<a class="news-more" href="${escapeHtml(n.link)}" target="_blank" rel="noopener">Read the full update &rarr;</a>`:""}
-      </article>`).join("");
-    c.querySelectorAll(".news-card").forEach(card=>{
-      const body=card.querySelector(".news-body");
-      if(body.scrollHeight<=body.clientHeight+2){ card.classList.add("short"); card.removeAttribute("tabindex"); card.removeAttribute("aria-expanded"); return; }
-      const set=open=>{ card.classList.toggle("open",open); card.setAttribute("aria-expanded",open?"true":"false"); };
-      card.addEventListener("mouseenter",()=>set(true));
-      card.addEventListener("mouseleave",()=>{ if(document.activeElement!==card) set(false); });
-      card.addEventListener("focus",()=>set(true));
-      card.addEventListener("blur",()=>set(false));
-      card.addEventListener("click",e=>{ if(e.target.closest("a")) return; set(!card.classList.contains("open")); });
-      card.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); set(!card.classList.contains("open")); } });
+        ${rich
+          ? `<p class="news-preview">${escapeHtml(n.text)}</p>
+             <div class="news-full" id="news-full-${id}-${i}" hidden>${full}</div>
+             <div class="news-actions"><button type="button" class="news-toggle" aria-expanded="false" aria-controls="news-full-${id}-${i}">Read more</button>${link}</div>`
+          : `<div class="news-full">${full}</div>${link?`<div class="news-actions">${link}</div>`:""}`}
+      </article>`;
+    }).join("");
+    c.querySelectorAll(".news-toggle").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const card=btn.closest(".news-card"), full=card.querySelector(".news-full"), prev=card.querySelector(".news-preview");
+        const open=btn.getAttribute("aria-expanded")!=="true";
+        btn.setAttribute("aria-expanded",open?"true":"false");
+        btn.textContent=open?"Show less":"Read more";
+        full.hidden=!open; prev.hidden=open;
+      });
     });
   }).catch(()=>{
     c.innerHTML=`<p class="muted">We couldn't load updates right now. You can read them all on <a class="red" href="${escapeHtml(TUFR.newsArchiveUrl)}" target="_blank" rel="noopener">Buttondown</a>.</p>`;

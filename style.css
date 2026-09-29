@@ -136,18 +136,27 @@ blockquote{border-left:3px solid var(--red);padding-left:1.4rem;font-size:1.3rem
 .signup-card button{background:#fff;color:var(--maroon);border:none;padding:.8rem 1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
 .signup-card button:hover{background:#F3C9CF}
 
-/* news cards: short preview that expands on hover, focus, or tap */
-.news-card{transition:border-color .15s}
-.news-card .news-body{position:relative;max-height:4.9em;overflow:hidden;transition:max-height .45s ease}
-.news-card .news-body p{white-space:pre-line}
-.news-card:not(.short) .news-body::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2em;background:linear-gradient(transparent,var(--white));pointer-events:none;transition:opacity .2s}
-.news-card:not(.short){cursor:pointer}
-.news-card.open .news-body{max-height:60em}
-.news-card.open .news-body::after{opacity:0}
-.news-card:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-.news-more{display:inline-block;margin-top:.9rem;font-size:.85rem;font-weight:600;color:var(--red)}
+/* news cards: short text preview, "Read more" shows the full email (links, buttons, images) */
+.news-preview{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:var(--grey);font-size:.93rem;white-space:pre-line}
+.news-full{color:var(--grey);font-size:.93rem}
+.news-full[hidden],.news-preview[hidden]{display:none}
+.news-full p,.news-full ul,.news-full ol,.news-full blockquote,.news-full figure,.news-full pre{margin:0 0 1rem}
+.news-full ul,.news-full ol{padding-left:1.3rem}
+.news-full h4{font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;text-transform:uppercase;color:var(--ink);margin:1.2rem 0 .5rem}
+.news-full strong,.news-full b{color:var(--ink)}
+.news-full a{color:var(--red);text-decoration:underline}
+.news-full a.news-btn{display:inline-block;background:var(--red-bg);color:#fff;text-decoration:none;font-weight:600;padding:.65rem 1.3rem;border-radius:2px;margin:.3rem 0}
+.news-full a.news-btn:hover{background:var(--maroon)}
+.news-full img{display:block;max-width:100%;height:auto;margin:1rem 0}
+.news-full blockquote{border-left:3px solid var(--red);padding-left:1rem}
+.news-full pre{overflow-x:auto;background:var(--offwhite);padding:.8rem}
+.news-full hr{border:0;border-top:1px solid var(--line);margin:1.2rem 0}
+.news-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem;margin-top:.9rem}
+.news-toggle{background:none;border:none;padding:0;font:inherit;font-size:.85rem;font-weight:700;color:var(--red);cursor:pointer}
+.news-toggle:hover{text-decoration:underline}
+.news-toggle:focus-visible,.news-more:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.news-more{font-size:.85rem;font-weight:600;color:var(--red)}
 .news-more:hover{text-decoration:underline}
-@media (prefers-reduced-motion:reduce){.news-card .news-body{transition:none}}
 
 /* alumni legacy grid */
 .alumni-season{border-top:1px solid var(--line);padding:2rem 0;display:grid;grid-template-columns:200px 1fr;gap:2rem}

@@ -19,7 +19,9 @@ Photos go in `photos/`. Compress large images first (for example `sips -Z 1600 -
 News comes from the Pitwall newsletter on Buttondown, so you write each update once.
 
 1. In Buttondown, write your email and send it (or schedule it).
-2. Within about five minutes it shows on the News page and the homepage "Latest News", newest first. Each card shows a short preview that expands when you hover over it (or tap it on a phone) and has a "Read the full update" link to the full email.
+2. Within about five minutes it shows on the News page and the homepage "Latest News", newest first. Each card shows a short text preview. "Read more" opens the full email on the page, including bold and italic text, headings, lists, links, buttons, and photos. A "Read the full update" link goes to the email on Buttondown.
+
+Email formatting is cleaned on the server before it is shown (`api/news.js`). Only simple formatting, secure (`https`) links, and secure images are kept. Scripts, embedded content, and inline styles are removed.
 
 Notes:
 - Only sent issues appear. Drafts and scheduled emails that have not gone out yet do not.
