@@ -27,6 +27,7 @@ const TUFR = {
     { src: "photos/gallery/gallery-10.jpg" },
     { src: "photos/gallery/gallery-11.jpg" },
     { src: "photos/gallery/gallery-12.jpg" },
+    { src: "photos/gallery/gallery-13.jpg" },
   ],
 
   // News comes from a published Google Sheet (CSV link). Leave "" to use the posts in news[] below.
