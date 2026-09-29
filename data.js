@@ -11,18 +11,6 @@ const TUFR = {
   instagram: "https://www.instagram.com/tu.formula.racing/",
   address: "One Trinity Pl, San Antonio, TX 78212",
 
-  stats: [
-    { label: "Founded", value: "2023" },
-    { label: "Members", value: "30+" },
-    { label: "Current Build", value: "Car 3" },
-    { label: "Majors Welcome", value: "All" },
-  ],
-
-  subteams: [
-    "Chassis & Suspension", "Powertrain", "Aerodynamics",
-    "Electronics & Data", "Business Operations",
-  ],
-
   /* ---------- CURRENT TEAM ---------- */
   leadership: [
     { name: "Clayton Yeoman", role: "President", major: "Chassis Development", photo: "" },
@@ -121,17 +109,6 @@ const TUFR = {
 function photoOrPh(src, alt){
   return src ? `<img src="${src}" alt="${alt}" style="aspect-ratio:1;object-fit:cover;width:100%">`
              : `<div class="ph sq">photo: ${alt}</div>`;
-}
-function renderStats(id){
-  const c=document.getElementById(id); if(!c) return;
-  c.innerHTML = TUFR.stats.map(s=>`<div><b>${s.value}</b><span>${s.label}</span></div>`).join("");
-}
-function renderSubteamChips(id){
-  const c=document.getElementById(id); if(!c) return;
-  c.innerHTML = TUFR.subteams.map(s=>{
-    const parts=s.split(" ");
-    return `<span class="chip"><b>${parts[0]}</b> ${parts.slice(1).join(" ")}</span>`;
-  }).join("");
 }
 function renderLeadership(id){
   const c=document.getElementById(id); if(!c) return;
